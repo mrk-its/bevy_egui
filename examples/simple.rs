@@ -1,9 +1,10 @@
 use bevy::prelude::*;
 use bevy_egui::{egui, EguiContext, EguiPlugin};
+use bevy::PipelinedDefaultPlugins;
 
 fn main() {
     App::new()
-        .add_plugins(DefaultPlugins)
+        .add_plugins(PipelinedDefaultPlugins)
         .add_plugin(EguiPlugin)
         .add_system(ui_example.system())
         .run();
