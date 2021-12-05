@@ -21,7 +21,9 @@ use bevy::{
     utils::{HashMap, HashSet},
     window::WindowId,
 };
-use wgpu::{BufferBinding, BufferDescriptor, ShaderModuleDescriptor, ShaderSource};
+use wgpu::{
+    BufferBinding, BufferDescriptor, SamplerBindingType, ShaderModuleDescriptor, ShaderSource,
+};
 
 use crate::render_systems::{
     EguiTransform, ExtractedEguiContext, ExtractedEguiSettings, ExtractedEguiTextures,
@@ -99,10 +101,7 @@ impl FromWorld for EguiShaders {
                     BindGroupLayoutEntry {
                         binding: 1,
                         visibility: ShaderStages::FRAGMENT,
-                        ty: BindingType::Sampler {
-                            filtering: true,
-                            comparison: false,
-                        },
+                        ty: BindingType::Sampler(SamplerBindingType::Filtering),
                         count: None,
                     },
                 ],
@@ -142,6 +141,7 @@ impl FromWorld for EguiShaders {
                         ],
                     }],
                 },
+                multiview: None,
                 fragment: Some(wgpu::FragmentState {
                     module: &shader_module,
                     entry_point: "fs_main",
