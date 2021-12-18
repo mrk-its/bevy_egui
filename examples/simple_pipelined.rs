@@ -5,13 +5,13 @@ use bevy::{
     ecs::prelude::*,
     math::Vec3,
     prelude::{App, Transform},
-    render2::camera::PerspectiveCameraBundle,
-    PipelinedDefaultPlugins,
+    render::camera::PerspectiveCameraBundle,
+    DefaultPlugins,
 };
 
 fn main() {
     App::new()
-        .add_plugins(PipelinedDefaultPlugins)
+        .add_plugins(DefaultPlugins)
         .add_plugin(EguiPlugin)
         .add_system(ui_example.system())
         .add_startup_system(setup.system())
